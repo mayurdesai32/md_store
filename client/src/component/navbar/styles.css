@@ -1,0 +1,25 @@
+/* navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid green;
+  align-items: center;
+  /* height: 700px; */
+  margin-bottom: 24px;
+}
+nav #brand a {
+  /* display: inline-block; */
+  padding: 20px;
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  /* border: 2px solid red; */
+}
+
+nav ul li a {
+  padding: 20px;
+  text-decoration: none;
+}

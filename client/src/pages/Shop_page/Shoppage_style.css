@@ -1,0 +1,20 @@
+.shop_page {
+}
+
+.all_product {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination div {
+  border: 1px solid black;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 20px;
+}

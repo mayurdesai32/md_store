@@ -1,0 +1,37 @@
+.home_page {
+  display: flex;
+  /* border: 2px solid red; */
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.box {
+  border: 1px solid black;
+  /* padding: 15px; */
+  text-align: center;
+  flex: 30%;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-left: 15px;
+}
+
+.sub_box {
+  border: 1px solid black;
+  width: 70%;
+  padding-bottom: 15px;
+}
+
+.gen_box {
+  border: 1px solid black;
+  margin-left: 15px;
+  flex: 45%;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

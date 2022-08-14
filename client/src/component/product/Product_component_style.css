@@ -1,0 +1,22 @@
+.product {
+  border: 2px solid red;
+  /* max-width: 350px; */
+  flex-basis: 380px;
+  text-align: center;
+  margin-left: 25px;
+  margin-bottom: 45px;
+  padding-bottom: 20px;
+}
+
+.product_img img {
+  width: 200px;
+  height: 250px;
+}
+
+.product .product_btn {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 4px 3px;
+  background-color: rgba(239, 172, 5, 0.963);
+}
