@@ -1,2 +1,8 @@
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test');
+mongoose = require('mongoose');
+const connectdatabase = () => {
+  mongoose.connect(process.env.mongodb).then(() => {
+    console.log('connected to database');
+  });
+};
+
+module.exports = connectdatabase;
