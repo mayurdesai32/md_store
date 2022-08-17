@@ -1,6 +1,7 @@
 require('dotenv').config({ path: './utils/config.env' });
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 // for handling uncaught Exception
@@ -14,9 +15,10 @@ process.on('uncaughtException', (err) => {
 const connectdatabase = require('./db/mongodb');
 connectdatabase();
 // all middleware
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
-
+app.use(cookieParser());
 // all routes
 const product_router = require('./routes/product_routes');
 const order_routes = require('./routes/order_routes');

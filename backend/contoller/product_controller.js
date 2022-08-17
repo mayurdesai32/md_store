@@ -1,10 +1,12 @@
-//
-const wrapAsync = require('../error_handler/wrapAsync');
-// const AppError = require('../error_handler/AppError');
-const ErrorHandler = require('../error_handler/ErrorHandler');
 const Product = require('../model/product_schema');
+const wrapAsync = require('../error_handler/wrapAsync');
+
+const ErrorHandler = require('../error_handler/ErrorHandler');
+
+const ApiFeatures = require('../utils/apiFeatures');
 
 exports.createproduct = wrapAsync(async (req, res, next) => {
+  req.body.user = req.user.id;
   const product = await Product.create(req.body);
 
   res.status(201).json({ success: true, product });
@@ -15,10 +17,6 @@ exports.updatesingleproduct = wrapAsync(async (req, res, next) => {
   var product = await Product.findById(id);
 
   if (!product) {
-    // return res.status(500).json({
-    //   success: false,
-    //   message: `product with this id :${id} not found`,
-    // });
     return next(new ErrorHandler('Product not found', 404));
   }
 
@@ -30,9 +28,19 @@ exports.updatesingleproduct = wrapAsync(async (req, res, next) => {
 });
 
 exports.getallproduct = wrapAsync(async (req, res, next) => {
-  const product = await Product.find();
+  const resultPerPage = 5;
+  const productCount = await Product.countDocuments;
 
-  res.status(200).json({ success: true, product });
+  const apiFeatures = new ApiFeatures(Product.find(), req.query)
+    .search()
+    .filter()
+    .pagination(resultPerPage);
+
+  const product = await apiFeatures.query;
+
+  res
+    .status(200)
+    .json({ success: true, total: product.length, productCount, product });
 });
 
 exports.getsingleproduct = wrapAsync(async (req, res) => {
@@ -41,10 +49,7 @@ exports.getsingleproduct = wrapAsync(async (req, res) => {
   console.log(product);
 
   if (!product) {
-    return res.status(500).json({
-      success: false,
-      message: `product with this id :${id} not found`,
-    });
+    return next(new ErrorHandler('Product not found', 404));
   }
 
   res.status(200).json({ success: true, product });
